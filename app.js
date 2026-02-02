@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const {PORT} = require('./src/config/env')
+
 
 app.use(express.json())
 
@@ -16,6 +16,8 @@ app.use('/api',productRouter)
 
 
 
+
+const {PORT} = require('./src/config/env')
 app.listen(PORT,()=>{
-    console.log("SERVER : http://localhost:"+PORT);
+    console.log(`SERVER : http://localhost:${PORT}`);
 })
