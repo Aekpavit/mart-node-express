@@ -19,3 +19,12 @@ exports.delete = (id)=>{
 exports.add = (name, price, type) =>{
     return db.query('INSERT INTO products(name,price,type)VALUES (?,?,?)',[name, price, type])
 }
+
+exports.edit = (id,name, price, type) =>{
+    return db.query(`UPDATE products
+                     SET name = ? ,
+                         price = ? ,
+                         type = ? 
+                     WHERE id_products = ?
+    `,[id,name, price, type])
+}

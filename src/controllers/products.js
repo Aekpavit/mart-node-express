@@ -50,3 +50,10 @@ exports.addProduct = async (req,res)=>{
         res.status(500).json({err : err.message})
     }
 }
+
+exports.editProduct = async (req,res)=>{
+    const id = req.params.id
+    const {name,price,type} = req.body
+    const [result] = await products.edit(id,name,price,type)
+    res.json({newname:name,newprice:price,newtype:type})
+}
