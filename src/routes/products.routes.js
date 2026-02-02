@@ -5,7 +5,7 @@ const productController = require('../controllers/products')
 
 router.get('/products',productController.getProducts)
 router.get('/products/:id',productController.getProductsID)
-router.delete('/products/:id',productController.deleteprodcut)
+router.delete('/products/:id',productController.deleteProdcut)
 
 
 module.exports = router
