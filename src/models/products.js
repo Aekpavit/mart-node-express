@@ -1,9 +1,23 @@
 const db = require('../config/db')
 
 
-
 exports.getAll = () =>{
-    return db.query('SELECT * FROM products')
+    return db.query('SELECT p.id_products,p.name,p.price, p.type, s.quantity FROM products p JOIN stock s ON p.id_products = s.product_id')
+}
+
+
+exports.getAllP = () => {
+    return db.query(`
+      SELECT 
+        p.id_products,
+        p.name,
+        p.price,
+        p.type,
+        s.quantity
+      FROM products p
+      JOIN stock s ON p.id_products = s.product_id
+      WHERE s.quantity > 0
+    `)
 }
 
 

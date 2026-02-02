@@ -10,6 +10,14 @@ exports.getProducts = async (req,res)=>{
         res.status(500).json({err : err.message})
     }
 }
+exports.gethaveProducts = async (req,res)=>{
+    try{
+        const [result] =  await products.getAllP()
+        res.json(result)
+    }catch(err){
+        res.status(500).json({err : err.message})
+    }
+}
 
 
 exports.getProductsID = async (req,res)=>{
