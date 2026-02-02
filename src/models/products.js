@@ -15,3 +15,7 @@ exports.getById = (id) =>{
 exports.delete = (id)=>{
     return db.query('DELETE FROM products WHERE id_products = ?',[id])
 }
+
+exports.add = (name, price, type) =>{
+    return db.query('INSERT INTO products(name,price,type)VALUES (?,?,?)',[name, price, type])
+}

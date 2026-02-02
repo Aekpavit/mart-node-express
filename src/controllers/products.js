@@ -34,9 +34,19 @@ exports.deleteProdcut = async (req,res)=>{
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: "cant't delete // data not found" })
         }
-        res.json(result)
+        res.json({status : "finish"})
     }catch(err){
         res.status(500).json({err : err.message })
 
+    }
+}
+
+exports.addProduct = async (req,res)=>{
+    try{
+        const{ name, price, type } = req.body
+        const [result] = await products.add(name, price, type )
+        res.json({name : name,price : price, type : type})
+    }catch(err){
+        res.status(500).json({err : err.message})
     }
 }
