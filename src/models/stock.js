@@ -13,3 +13,8 @@ exports.getStockByid = (product_id) =>{
 exports.updateStock = (product_id,quantity) =>{
     return db.query('UPDATE stock SET quantity = ? WHERE id_stock = ?',[quantity,product_id])
 }
+
+
+exports.create = (product_id, quantity) => {
+    return db.query('INSERT INTO stock (product_id, quantity) VALUES (?, ?)',[product_id, quantity])
+}

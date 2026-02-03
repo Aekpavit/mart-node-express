@@ -1,5 +1,30 @@
 const products = require('../models/products')
+const stock = require('../models/stock')
 
+exports.addProduct = async (req, res) => {
+  const { name, price, type } = req.body
+  const img = null
+
+  try {
+    // 1️⃣ เพิ่มสินค้า
+    const [result] = await products.add(name, price, type, img)
+
+    // 2️⃣ เอา id ที่เพิ่งสร้าง
+    const product_id = result.insertId
+
+    // 3️⃣ เพิ่ม stock อัตโนมัติ
+    await stock.create(product_id, 0)
+
+    res.json({
+      id: product_id,
+      name,
+      price,
+      type
+    })
+  } catch (err) {
+    res.status(500).json({ err: err.message })
+  }
+}
 //โปรดักทุกตัว
 exports.getProducts = async (req,res)=>{
     try{
@@ -48,17 +73,7 @@ exports.deleteProdcut = async (req,res)=>{
     }
 }
 // เพิ่ม
-exports.addProduct = async (req,res)=>{
-    const {name,price,type} = req.body
-    const img = req.file ? `/upload/${req.file.filename}` : null
-    try{
-        const [result] = await products.add(name, price, type , img)
-        await getStock.create(products,0)
-        res.json({name : name,price : price, type : type ,img : img})
-    }catch(err){
-        res.status(500).json({err : err.message})
-    }
-}
+
 //แก้ไข
 exports.editProduct = async (req, res) => {
     try {
