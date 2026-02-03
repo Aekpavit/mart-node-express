@@ -61,7 +61,7 @@ exports.addProduct = async (req,res)=>{
 
 exports.editProduct = async (req,res)=>{
     const id = req.params.id
-    const {name,price,type} = req.body
-    const [result] = await products.edit(id,name,price,type)
-    res.json({newname:name,newprice:price,newtype:type})
+    const {name,price,type,img} = req.body
+    const [result] = await products.edit(id,name,price,type,img)
+    res.json({newname:name,newprice:price,newtype:type ,img:img})
 }

@@ -3,7 +3,7 @@ const app = express();
 
 
 app.use(express.json())
-
+app.use('/uploads', express.static('uploads'))
 
 const mainRouter = require('./src/routes/main.routes');
 const productRouter = require('./src/routes/products.routes')
