@@ -53,7 +53,7 @@ exports.editNoImage = (id, name, price, type) => { // แก้ไขแบบ�
   )
 }
 
-
+//เพิ่มรูป
 exports.addimg = (id,img) =>{
   return db.query(
     `

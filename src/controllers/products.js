@@ -1,5 +1,4 @@
 const products = require('../models/products')
-const stock = require('../models/stock')
 
 //โปรดักทุกตัว
 exports.getProducts = async (req,res)=>{
@@ -80,7 +79,7 @@ exports.editProduct = async (req, res) => {
   }
 
 
-  exports.uploadImg = async (req, res) => {
+exports.uploadImg = async (req, res) => {
     const { id } = req.params
   
     const img = req.file
