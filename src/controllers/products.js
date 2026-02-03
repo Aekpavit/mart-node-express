@@ -51,17 +51,28 @@ exports.deleteProdcut = async (req,res)=>{
 
 exports.addProduct = async (req,res)=>{
     try{
-        const{ name, price, type } = req.body
-        const [result] = await products.add(name, price, type )
-        res.json({name : name,price : price, type : type})
+        const{ name, price, type ,img} = req.body
+        const [result] = await products.add(name, price, type , img)
+        res.json({name : name,price : price, type : type ,img : img})
     }catch(err){
         res.status(500).json({err : err.message})
     }
 }
-
-exports.editProduct = async (req,res)=>{
-    const id = req.params.id
-    const {name,price,type,img} = req.body
-    const [result] = await products.edit(id,name,price,type,img)
-    res.json({newname:name,newprice:price,newtype:type ,img:img})
-}
+exports.editProduct = async (req, res) => {
+    try {
+      const { id } = req.params
+      const { name, price, type } = req.body
+  
+      let img = null
+      if (req.file) {
+        img = '/uploads/' + req.file.filename
+        await products.editWithImage(id, name, price, type, img)
+      } else {
+        await products.editNoImage(id, name, price, type)
+      }
+  
+      res.json({ message: 'update success' })
+    } catch (err) {
+      res.status(500).json({ err: err.message })
+    }
+  }
