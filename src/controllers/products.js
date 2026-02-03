@@ -1,7 +1,7 @@
 const products = require('../models/products')
+const stock = require('../models/stock')
 
-
-
+//โปรดักทุกตัว
 exports.getProducts = async (req,res)=>{
     try{
         const [result] =  await products.getAll()
@@ -19,7 +19,7 @@ exports.gethaveProducts = async (req,res)=>{
     }
 }
 
-
+// by ID
 exports.getProductsID = async (req,res)=>{
     try{
         
@@ -34,7 +34,7 @@ exports.getProductsID = async (req,res)=>{
     }
 }
 
-
+// ลบ
 exports.deleteProdcut = async (req,res)=>{
     try{
         const id = req.params.id
@@ -48,16 +48,19 @@ exports.deleteProdcut = async (req,res)=>{
 
     }
 }
-
+// เพิ่ม
 exports.addProduct = async (req,res)=>{
+    const {name,price,type} = req.body
+    const img = req.file ? `/upload/${req.file.filename}` : null
     try{
-        const{ name, price, type ,img} = req.body
         const [result] = await products.add(name, price, type , img)
+        await getStock.create(products,0)
         res.json({name : name,price : price, type : type ,img : img})
     }catch(err){
         res.status(500).json({err : err.message})
     }
 }
+//แก้ไข
 exports.editProduct = async (req, res) => {
     try {
       const { id } = req.params
@@ -66,12 +69,27 @@ exports.editProduct = async (req, res) => {
       let img = null
       if (req.file) {
         img = '/uploads/' + req.file.filename
-        await products.editWithImage(id, name, price, type, img)
+        await products.editWithImage(id, name, price, type, img) // model1
       } else {
-        await products.editNoImage(id, name, price, type)
+        await products.editNoImage(id, name, price, type)// model2
       }
+      res.json({name : name,price : price, type : type ,img : img})
+    } catch (err) {
+      res.status(500).json({ err: err.message })
+    }
+  }
+
+
+  exports.uploadImg = async (req, res) => {
+    const { id } = req.params
   
-      res.json({ message: 'update success' })
+    const img = req.file
+      ? `/uploads/${req.file.filename}`
+      : null
+  
+    try {
+      await products.addimg(id, img)
+      res.json({ img })
     } catch (err) {
       res.status(500).json({ err: err.message })
     }

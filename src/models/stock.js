@@ -1,16 +1,21 @@
 const db = require('../config/db')
 
 
-
-
 exports.getStock = () =>{
-    return db.query('SELECT * FROM stock')
+    return db.query(`SELECT 
+                    s.id_stock,
+                    p.id_products,
+                    p.name,
+                    s.quantity
+                    FROM stock s
+                    JOIN products p ON s.product_id = p.id_products;`
+            )
 } 
 
 
 
 exports.getStockByid = (product_id) =>{
-    return db.query('SELECT * FROM stock WHERE  product_id = ?',[product_id])
+    return db.query('SELECT s.id_stock, p.id_products,p.name,s.quantity FROM stock s JOIN products p ON s.product_id = p.id_products WHERE  id_stock = ?',[product_id])
 }
 
 

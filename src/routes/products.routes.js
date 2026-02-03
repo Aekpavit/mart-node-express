@@ -11,6 +11,7 @@ router.get('/producth', productController.gethaveProducts)
 router.get('/products/:id', productController.getProductsID)
 router.post('/products',upload.single('image'),productController.addProduct)
 router.put('/products/:id',upload.single('image'),productController.editProduct)
+router.put('/productimg/:id',upload.single('image'),productController.uploadImg)
 router.delete('/products/:id', productController.deleteProdcut)
 
 router.get('/stock', stockController.getAllStock)

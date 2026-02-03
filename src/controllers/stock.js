@@ -22,3 +22,12 @@ exports.getStock = async (req,res) =>{
         res.status(500).json({err : err.message})
     }
 }
+
+
+
+exports.create = (product_id, quantity) => {
+  return db.query(
+    'INSERT INTO stock (product_id, quantity) VALUES (?, ?)',
+    [product_id, quantity]
+  )
+}
