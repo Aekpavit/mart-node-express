@@ -1,1 +1,4 @@
-test test test test test test new branch
+โปรเจกต์ Backend ระบบร้านค้า เขียนด้วย Node.js + Express  
+ใช้ฐานข้อมูล MySQL สำหรับจัดการสินค้าและสต็อก  
+เริ่มต้นโปรเจกต์ด้วยคำสั่ง cd node-app-mart  
+รันเซิร์ฟเวอร์โหมด dev ด้วย npm run dev
