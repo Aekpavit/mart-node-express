@@ -72,6 +72,6 @@ exports.getimg = (id) =>{
 exports.search = (searchTerm) => {
   return db.query(
     'SELECT * FROM products WHERE LOWER(name) LIKE ? OR LOWER(type) LIKE ? ORDER BY name ASC',
-    [`%${searchTerm.toLowerCase()}%`,`%${searchTerm.toLowerCase()}%`]
+    [`%${searchTerm.toLowerCase()}%`,]
   )
 }
