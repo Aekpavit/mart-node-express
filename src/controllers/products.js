@@ -6,13 +6,8 @@ exports.addProduct = async (req, res) => {
   const img = null
 
   try {
-    // 1️⃣ เพิ่มสินค้า
     const [result] = await products.add(name, price, type, img)
-
-    // 2️⃣ เอา id ที่เพิ่งสร้าง
     const product_id = result.insertId
-
-    // 3️⃣ เพิ่ม stock อัตโนมัติ
     await stock.create(product_id, 0)
 
     res.json({
@@ -72,9 +67,8 @@ exports.deleteProdcut = async (req,res)=>{
 
     }
 }
-// เพิ่ม
 
-//แก้ไข
+
 exports.editProduct = async (req, res) => {
     try {
       const { id } = req.params
@@ -83,9 +77,9 @@ exports.editProduct = async (req, res) => {
       let img = null
       if (req.file) {
         img = '/uploads/' + req.file.filename
-        await products.editWithImage(id, name, price, type, img) // model1
+        await products.editWithImage(id, name, price, type, img) // model editWithImage
       } else {
-        await products.editNoImage(id, name, price, type)// model2
+        await products.editNoImage(id, name, price, type)// model editNoImage
       }
       res.json({name : name,price : price, type : type ,img : img})
     } catch (err) {
@@ -108,3 +102,15 @@ exports.uploadImg = async (req, res) => {
       res.status(500).json({ err: err.message })
     }
   }
+
+
+exports.getImage = async (req,res) =>{
+  const {id} = req.params
+  try {
+    const [result] = await products.getimg(id)
+    if(result.length === 0 ) return res.status(500).json({err : "not found !"})
+    res.json({result : result}) 
+  }catch(err){
+    res.status(500).json({err : err.message})
+  }
+}

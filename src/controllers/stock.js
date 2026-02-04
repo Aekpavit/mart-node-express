@@ -16,7 +16,7 @@ exports.getStock = async (req,res) =>{
     const { id }= req.params
     try{
         const [result] = await stock.getStockByid(id)
-        if(result.length ===0) return res.status(404).json({msg : "not found!"})
+        if(result.length === 0) return res.status(404).json({msg : "not found!"})
             res.json(result)
     }catch(err){
         res.status(500).json({err : err.message})

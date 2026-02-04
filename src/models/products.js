@@ -62,3 +62,8 @@ exports.addimg = (id,img) =>{
     `,[img,id]
   )
 }
+
+
+exports.getimg = (id) =>{
+  return db.query('SELECT img FROM products WHERE id_products = ?',[id])
+}
