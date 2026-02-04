@@ -5,7 +5,7 @@ const productController = require('../controllers/products')
 const stockController = require('../controllers/stock')
 const upload = require('../config/upload')
 
-
+router.get('/productsk',productController.secrthByid)
 router.get('/products', productController.getProducts)
 router.get('/producth', productController.gethaveProducts)
 router.get('/products/:id', productController.getProductsID)

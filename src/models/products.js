@@ -67,3 +67,11 @@ exports.addimg = (id,img) =>{
 exports.getimg = (id) =>{
   return db.query('SELECT img FROM products WHERE id_products = ?',[id])
 }
+
+
+exports.search = (searchTerm) => {
+  return db.query(
+    'SELECT * FROM products WHERE LOWER(name) LIKE ? OR LOWER(type) LIKE ? ORDER BY name ASC',
+    [`%${searchTerm.toLowerCase()}%`,`%${searchTerm.toLowerCase()}%`]
+  )
+}

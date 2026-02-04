@@ -1,3 +1,4 @@
+const { authPlugins } = require('mysql2')
 const products = require('../models/products')
 const stock = require('../models/stock')
 
@@ -111,6 +112,19 @@ exports.getImage = async (req,res) =>{
     const [result] = await products.getimg(id)
     if(result.length === 0 ) return res.status(500).json({err : "not found !"})
     res.json({result : result}) 
+  }catch(err){
+    res.status(500).json({err : err.message})
+  }
+}
+
+
+
+exports.secrthByid = async (req,res) =>{
+  try{
+    let {keyword} = req.query 
+    const searchTerm = `${keyword}`
+    const [result] = await products.search(searchTerm)
+    res.json({serach : result})
   }catch(err){
     res.status(500).json({err : err.message})
   }

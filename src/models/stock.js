@@ -24,3 +24,5 @@ exports.create = (id, quantity) => {
 exports.quantityUpdate = (quantity,id) =>{
     return db.query('UPDATE stock SET quantity =? WHERE product_id =?',[quantity,id])
 }
+
+
