@@ -14,6 +14,7 @@ exports.getAllStock = async (req,res) =>{
 
 exports.getStock = async (req,res) =>{
     const { id }= req.params
+    
     try{
         const [result] = await stock.getStockByid(id)
         if(result.length === 0) return res.status(404).json({msg : "not found!"})
@@ -25,9 +26,15 @@ exports.getStock = async (req,res) =>{
 
 
 
-exports.create = (product_id, quantity) => {
-  return db.query(
-    'INSERT INTO stock (product_id, quantity) VALUES (?, ?)',
-    [product_id, quantity]
-  )
+
+exports.updateQuantity = async(req,res) =>{
+    const {quantity} = req.body
+    try{
+        const id = req.params.id
+        const [result] = await stock.quantityUpdate(quantity,id)
+        if(!id) return res.status(500).json({err : err.message})
+        res.json({ msg : "succes!!", quantity : quantity }) 
+    }catch(err){
+        res.status(500).json({err : err.message})
+    }
 }

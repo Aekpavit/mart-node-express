@@ -8,7 +8,7 @@ exports.addProduct = async (req, res) => {
   try {
     const [result] = await products.add(name, price, type, img)
     const product_id = result.insertId
-    await stock.create(product_id, 0)
+    await stock.create(product_id, 1)
 
     res.json({
       id: product_id,
@@ -20,7 +20,8 @@ exports.addProduct = async (req, res) => {
     res.status(500).json({ err: err.message })
   }
 }
-//โปรดักทุกตัว
+
+
 exports.getProducts = async (req,res)=>{
     try{
         const [result] =  await products.getAll()

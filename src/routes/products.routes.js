@@ -21,5 +21,6 @@ router.get('/productimg/:id',productController.getImage)
 
 router.get('/stock', stockController.getAllStock)
 router.get('/stock/:id', stockController.getStock)
+router.put('/stock/:id',stockController.updateQuantity)
 
 module.exports = router
