@@ -22,7 +22,14 @@ exports.addProduct = async (req, res) => {
   }
 }
 
-
+exports.getAllImage = async (req,res) =>{
+  try{
+     const [result] = await  products.getAllimg()
+     res.json(result)
+  }catch(err){
+    res.status(500).json({err : err.message})
+  }
+}
 exports.getProducts = async (req,res)=>{
     try{
         const [result] =  await products.getAll()

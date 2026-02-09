@@ -3,7 +3,8 @@ const router = express.Router();
 
 const productController = require('../controllers/products')
 const stockController = require('../controllers/stock')
-const upload = require('../config/upload')
+const upload = require('../config/upload');
+const { route } = require('./main.routes');
 
 router.get('/productsk',productController.secrthByid)
 router.get('/products', productController.getProducts)
@@ -16,7 +17,7 @@ router.put('/products/:id',upload.single('image'),productController.editProduct)
 
 router.put('/productimg/:id',upload.single('image'),productController.uploadImg)
 router.get('/productimg/:id',productController.getImage)
-
+router.get('/productimg',productController.getAllImage)
 
 
 router.get('/stock', stockController.getAllStock)
