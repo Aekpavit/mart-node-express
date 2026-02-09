@@ -11,7 +11,7 @@ const productRouter = require('./src/routes/products.routes')
 
 
 
-app.use('/',mainRouter)
+app.use('/test',mainRouter)
 app.use('/api',productRouter)
 
 
