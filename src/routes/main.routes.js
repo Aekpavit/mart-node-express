@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-    res.send('Welcome to the Main Page!');
+    res.send('test 1 2 3!');
 });
 
 
