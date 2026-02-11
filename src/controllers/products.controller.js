@@ -127,9 +127,9 @@ exports.getImage = async (req,res) =>{
 
 
 exports.secrthByid = async (req,res) =>{
-  try{
     let {keyword} = req.query 
     const searchTerm = `${keyword}`
+  try{
     const [result] = await products.search(searchTerm)
     res.json({serach : result})
   }catch(err){

@@ -25,9 +25,9 @@ exports.updateMenu = (name,price,img,id) =>{
 }
 
 
-exports.seacrhMenu = (key) =>{
+exports.seacrhMenu = (key="") =>{
     return db.query(
-        'SELECT * FROM products WHERE LOWER(name_menu) LIKE ? ORDER BY name ASC',
+        'SELECT * FROM menu WHERE LOWER(name_menu) LIKE ? ORDER BY name_menu ASC',
         [`%${key.toLowerCase()}%`]
       )
 }

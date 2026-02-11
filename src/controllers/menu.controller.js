@@ -51,8 +51,11 @@ exports.updateMenu = async (req, res) => {
 };
 
 exports.seacrhMenu = async (req, res) => {
+    const key = req.query.keyword || ""
   try {
-  } catch (err) {
+     const  [row] = await menu.seacrhMenu(key)
+     res.json({youkey : key , result : row })
+   } catch (err) {
     res.status(500).json({ err: err.message });
   }
 };
