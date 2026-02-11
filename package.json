@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Aekpavit/mart-node-express#readme",
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "ejs": "^4.0.1",
     "express": "^5.2.1",
