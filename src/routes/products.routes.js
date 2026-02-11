@@ -12,10 +12,10 @@ router.get('/producth', productController.gethaveProducts)
 router.get('/products/:id', productController.getProductsID)
 router.delete('/products/:id', productController.deleteProdcut)
 
-router.post('/products',upload.single('image'),productController.addProduct)
-router.put('/products/:id',upload.single('image'),productController.editProduct)
+router.post('/products',upload.single('img'),productController.addProduct)
+router.put('/products/:id',upload.single('img'),productController.editProduct)
 
-router.put('/productimg/:id',upload.single('image'),productController.uploadImg)
+router.put('/productimg/:id',upload.single('img'),productController.uploadImg)
 router.get('/productimg/:id',productController.getImage)
 router.get('/productimg',productController.getAllImage)
 
