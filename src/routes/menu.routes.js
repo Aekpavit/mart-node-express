@@ -7,8 +7,8 @@ const menucontroller = require('../controllers/menu.controller')
 router.get('/menu',menucontroller.getAllmenu)
 router.get('/menu/:id',menucontroller.getMenu)
 router.delete('/menu/:id',menucontroller.deleteMenu)
-router.put('/menu',menucontroller.addMenu)
-
+router.post('/menu',menucontroller.addMenu)
+router.put('/menu/:id',menucontroller.updateMenu)
 
 
 module.exports = router

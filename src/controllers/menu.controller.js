@@ -40,7 +40,11 @@ exports.addMenu = async (req, res) => {
 };
 
 exports.updateMenu = async (req, res) => {
+    const {name,price,img} = req.body
+    const {id} = req.params
   try {
+    const [result] = await menu.updateMenu(name,price,img,id)
+    res.json({newname:name,newprice:price,newimg:img})
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
