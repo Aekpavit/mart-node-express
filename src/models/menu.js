@@ -12,12 +12,12 @@ exports.getMenu = (id) =>{
 
 
 exports.deleteMenu = (id) =>{
-    return db.query('DELETE menu FROM WHERE id_menu = ?',[id])
+    return db.query('DELETE FROM menu WHERE id_menu = ?',[id])
 }
 
 
 exports.addMenu = (name,price,img,id) =>{
-    return db.query('INSERT INTO menu(name_menu,price_menu,img) WHERE id_menu =?',[name,price,img,id])
+    return db.query('INSERT INTO menu(name_menu,price_menu,img) VALUES (?,?,?)',[name,price,img])
 }
 
 exports.updateMenu = (name,price,img,id) =>{
