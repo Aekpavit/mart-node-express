@@ -49,6 +49,21 @@ exports.updateMenu = async (req, res) => {
     res.status(500).json({ err: err.message });
   }
 };
+exports.updateMenu = async (req, res) => {
+  const { id } = req.params;
+  const {name,price,img} = req.body
+
+  try {
+    if (img) {
+      await menu.updateMenu(name,price,img,id);
+    } else {
+      await menu.updateMenuNoimg(name,price,id);
+    }
+    res.json({ message: "Updated successfully" });
+  } catch (err) {
+    res.status(500).json({ err: err.message });
+  }
+};
 
 exports.seacrhMenu = async (req, res) => {
     const key = req.query.keyword || ""
@@ -59,3 +74,14 @@ exports.seacrhMenu = async (req, res) => {
     res.status(500).json({ err: err.message });
   }
 };
+
+
+exports.count = async (req,res) =>{
+  try{
+     const [row] = await menu.count()
+     res.json({ total: row[0].total });
+     console.log(row)
+  }catch(err){
+    res.status(500).json({ err: err.message })
+  }
+}

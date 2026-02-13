@@ -24,10 +24,18 @@ exports.updateMenu = (name,price,img,id) =>{
     return db.query('UPDATE menu SET name_menu =? ,price_menu =?,img =? WHERE id_menu =?',[name,price,img,id])
 }
 
+exports.updateMenuNoimg = (name,price,id) =>{
+    return db.query('UPDATE menu SET name_menu =?, price_menu =? WHERE id_menu =?',[name,price,id])
+}
+
 
 exports.seacrhMenu = (key="") =>{
     return db.query(
         'SELECT * FROM menu WHERE LOWER(name_menu) LIKE ? ORDER BY name_menu ASC',
         [`%${key.toLowerCase()}%`]
       )
+}
+
+exports.count = () =>{
+    return db.query('SELECT COUNT(*) as total FROM menu')
 }
