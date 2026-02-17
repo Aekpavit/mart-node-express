@@ -20,16 +20,16 @@ exports.addMenu = (name,price,img,id) =>{
     return db.query('INSERT INTO menu(name_menu,price_menu,img) VALUES (?,?,?)',[name,price,img])
 }
 
-exports.updateMenu = (name, price, img, id) => {
+exports.updateMenu = (name, price,type, img, id) => {
     if (img) {
       return db.query(
-        'UPDATE menu SET name_menu =?, price_menu =?, img =? WHERE id_menu =?',
-        [name, price, img, id]
+        'UPDATE menu SET name_menu =?, price_menu =?,type=? , img =? WHERE id_menu =?',
+        [name, price,img,type, id]
       )
     }  
     return db.query(
-      'UPDATE menu SET name_menu =?, price_menu =? WHERE id_menu =?',
-      [name, price, id]
+      'UPDATE menu SET name_menu =?, price_menu =? , type=? WHERE id_menu =?',
+      [name, price,type, id]
     )
   }
 

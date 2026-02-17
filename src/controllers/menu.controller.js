@@ -43,16 +43,17 @@ exports.addMenu = async (req, res) => {
 
 exports.updateMenu = async (req, res) => {
   const { id } = req.params;
-  const { name, price } = req.body;
+  const { name, price,type } = req.body;
 
   try {
     const img = req.file ? "/uploads/" + req.file.filename : undefined;
 
-    await menu.updateMenu(name, price, img, id);
+    await menu.updateMenu(name, price,type, img, id);
 
     res.json({
       name,
       price,
+      type,
       img
     });
 
