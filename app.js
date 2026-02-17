@@ -19,5 +19,5 @@ app.use('/api',menuAPI)
 
 const {PORT} = require('./src/config/env')
 app.listen(PORT,()=>{
-    console.log(`SERVER : http://localhost:${PORT}/`);
+    console.log(`SERVER : http://192.168.1.106:${PORT}/`);
 })
