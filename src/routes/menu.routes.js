@@ -9,7 +9,7 @@ router.get('/menu',menucontroller.getAllmenu)
 router.get('/menu/:id',menucontroller.getMenu)
 router.get('/menuc',menucontroller.count)
 router.delete('/menu/:id',menucontroller.deleteMenu)
-router.post('/menu',menucontroller.addMenu)
+router.post('/menu',upload.single('img'),menucontroller.addMenu)
 router.put('/menu/:id',upload.single('img'),menucontroller.updateMenu)
 
 

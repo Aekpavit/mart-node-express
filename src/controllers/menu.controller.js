@@ -30,10 +30,11 @@ exports.deleteMenu = async (req, res) => {
 };
 
 exports.addMenu = async (req, res) => {
-  const { name, price, img } = req.body;
+  const { name, price, type , des } = req.body;
   try {
-    const [result] = await menu.addMenu(name, price, img);
-    res.json({ name: name, price: price, img: img });
+    const img = req.file ? "/uploads/" + req.file.filename : undefined;
+    const [result] = await menu.addMenu(name, price, type,des ,img);
+    res.json({ name: name, price: price, des:des , img: img });
   } catch (err) {
     res.status(500).json({ err: err.message });
   }

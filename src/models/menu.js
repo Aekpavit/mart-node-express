@@ -16,15 +16,15 @@ exports.deleteMenu = (id) =>{
 }
 
 
-exports.addMenu = (name,price,img,id) =>{
-    return db.query('INSERT INTO menu(name_menu,price_menu,img) VALUES (?,?,?)',[name,price,img])
+exports.addMenu = (name,price,type,des,img) =>{
+    return db.query('INSERT INTO menu(name_menu,price_menu,type,des,img) VALUES (?,?,?,?,?)',[name,price,type,des,img])
 }
 
 exports.updateMenu = (name, price,type, img, id) => {
     if (img) {
       return db.query(
         'UPDATE menu SET name_menu =?, price_menu =?,type=? , img =? WHERE id_menu =?',
-        [name, price,img,type, id]
+        [name, price,type,img, id]
       )
     }  
     return db.query(
